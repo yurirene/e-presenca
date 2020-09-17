@@ -1,0 +1,29 @@
+{
+    "name": "yurirene/e-presenca",
+    "description": "Sistema de Presenca",
+    "authors": [
+        {
+            "name": "Yuri Ferreira",
+            "email": "yurirene@gmail.com",
+            "homepage": "http://yurirene.com.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Source\\": "Source/"
+        },
+        "files":[
+            "Source/Config.php",
+            "Source/Helpers.php"
+        ]
+    },
+    "require": {
+        "ext-json": "*",
+        "coffeecode/datalayer": "1.1.*",
+        "doctrine/orm": "2.7.3",
+        "coffeecode/router": "1.0.*",
+        "league/plates": "3.*",
+        "firebase/php-jwt": "^5.2"
+        
+    }
+}
