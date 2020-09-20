@@ -18,12 +18,7 @@
         
         <div class="row">
             <div id="alerta">
-                <div class="alert alert-dismissible fade" role="alert" id="alerta-class">
-                    <p id="alerta-texto"></p>
-                    <button type="button" class="close" id="botao-close" >
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                
             </div>
         </div>
         
@@ -93,12 +88,9 @@
                         $("#botao").attr("disabled", true);
 
                     }else{
-                        desativar();
                         video.pause();
                         audio.play();
-                        $("#nome").val(data.nome);
-                        $("#id").val(data.id);
-                        $("#botao").attr("disabled", false);
+                        alerta(data['message']['type'],data['message']['text']);
                     }
 
                 });
@@ -114,7 +106,8 @@
         // REGISTRAR PRESENCA
         var id = $("#id").val();
         var nome = $("#nome").val();
-        var dataString = {"token":"<?=$_SESSION['token']?>", "id":id};
+        var dataString = {"token":"<?=$_SESSION['token']?>", "id":id, "nome":nome};
+        
         $.ajax({
             url: "<?= url("/API/Chamada")?>",
             type: "POST",
@@ -122,9 +115,7 @@
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function(data){
-                $("#alerta-class").addClass("alert-"+data['message']['type'])
-                $("#alerta-texto").text(data['message']['text']);
-                $("#alerta-class").addClass("show");
+                alerta(data['message']['type'],data['message']['text']);
                 video.play();
                 
                 
@@ -132,15 +123,16 @@
         });
     });
     
-   $("#botao-close").click( function(event){
-        event.preventDefault();
-        desativar();
-    });
-    
-    function desativar(){
-        $("#alerta-class").removeClass("show");
-    }
 
+    function alerta(tipo, msg){
+        var alerta = "<div class='alert alert-dismissible fade alert-"+tipo+" show' role='alert'>"+
+                "<p>"+msg+"</p>"+
+                "<button type='button' class='close' data-dismiss='alert'>"+
+                "<span aria-hidden='true'>&times;</span>"+
+                "</button></div>";
+        $("#alerta").html(alerta);
+
+    }
 
 </script>
 

@@ -18,6 +18,8 @@ $router->get("/Logout", "AppController:logout", "app.logout");
 $router->get("/Lista", "AppController:lista", "app.lista");
 $router->get("/Sessoes", "AppController:sessoes", "app.sessoes");
 $router->get("/Buscar-Delegado/{codigo}", "AppController:buscarDelegado", "app.buscardelegado");
+$router->get("/Delegados", "AppController:delegados", "app.delegados");
+$router->get("/Igrejas", "AppController:igrejas", "app.igrejas");
 
 $router->post("/Logar", "AppController:logar", "app.logar");
 
@@ -29,11 +31,21 @@ $router->get("/Delegados/{token}", "APIController:listarDelegados");
 $router->get("/Delegados/{token}/{codigo}", "APIController:buscarDelegadosByCodigo");
 $router->get("/Sessoes/{token}", "APIController:listarSessoes");
 $router->get("/Sessoes/{token}/{id}", "APIController:listarSessoesById");
-$router->get("/Chamada/{token}", "APIController:chamada");
-
+$router->get("/Chamada/{token}", "APIController:listarChamada");
+$router->get("/Igrejas/{token}", "APIController:listarIgrejas");
+$router->get("/Erro", "APIController:erro", "api.error");
 
 $router->post("/Chamada", "APIController:registrarPresenca");
+$router->post("/Sessoes", "APIController:novaSessao");
+$router->post("/Igrejas", "APIController:novaIgreja");
+$router->post("/Delegados", "APIController:novoDelegado");
 
+$router->delete("/Sessoes/{token}/{id}", "APIController:apagarSessao");
+$router->delete("/Igrejas/{token}/{id}", "APIController:apagarIgreja");
+$router->delete("/Delegados/{token}/{id}", "APIController:apagarDelegado");
+
+$router->put("/Igrejas", "APIController:atualizarIgreja");
+$router->put("/Delegados", "APIController:atualizarDelegado");
 /**
 * ERRO
 */

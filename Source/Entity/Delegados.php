@@ -26,8 +26,8 @@ class Delegados
     
     
     /** 
-     * @ORM\Column(type="string") 
-     * @var string
+     * @ORM\Column(type="integer", name="igreja_id") 
+     * @var int
      */
     private $igreja;
     

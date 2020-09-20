@@ -25,13 +25,19 @@
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?=url("/")?>">Scanner</a>
+                        <a class="nav-link" href="<?=url("")?>">Scanner</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="<?=url("/Lista")?>">Lista</a>
+                        <a class="nav-link" href="<?=url("Lista")?>">Lista</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?=url("/Sessoes")?>">Sessões</a>
+                        <a class="nav-link" href="<?=url("Sessoes")?>">Sessões</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=url("Delegados")?>">Delegados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=url("Igrejas")?>">Igrejas</a>
                     </li>
                 </ul>
             
@@ -46,7 +52,17 @@
         <script src="<?=assets("js/jquery.min.js")?>"></script>
         <script src="<?=assets("js/popper.min.js")?>"></script>
         <script src="<?=assets("js/bootstrap.min.js")?>"></script>
+        <script>
+         function alerta(tipo, msg){
+            var alerta = "<div class='alert alert-dismissible fade alert-"+tipo+" show' role='alert'>"+
+                    "<p>"+msg+"</p>"+
+                    "<button type='button' class='close' data-dismiss='alert'>"+
+                    "<span aria-hidden='true'>&times;</span>"+
+                    "</button></div>";
+            $("#alerta").html(alerta);
 
+        }
+        </script>
         <?=$this->section("script")?>
         
     </body>

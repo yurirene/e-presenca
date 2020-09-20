@@ -11,6 +11,7 @@ abstract class DAO
     
     private $entityManager;
     private $entityPath;
+    private $conection;
     
     public function __construct($path) {
         $this->entityPath = $path;
@@ -25,9 +26,21 @@ abstract class DAO
         $useSimpleAnnotationReader = false;
         $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/Source/Entity"), $isDevMode, $proxyDir, $cache, $useSimpleAnnotationReader);
         $conn = DriverManager::getConnection(ORM_CONFIG);
+        $this->conection = $conn;
         $entityManager = EntityManager::create($conn, $config);
         
         return $entityManager;        
+    }
+    
+    public function getEntityManager()
+    {
+        return $this->entityManager;
+        
+    }
+    public function getConection() 
+    {
+        return $this->conection;
+        
     }
     
     public function insert($data)
@@ -45,7 +58,7 @@ abstract class DAO
     
     public function delete($data)
     {
-        $this->entityManager->refresh($data);
+        $this->entityManager->remove($data);
         $this->entityManager->flush();        
     }
     
@@ -73,9 +86,9 @@ abstract class DAO
     }
     
     
-    public function findBy(array $param) 
+    public function findBy(array $param, ?array $order = null) 
     {
-        return $this->entityManager->getRepository($this->entityPath)->findBy($param);
+        return $this->entityManager->getRepository($this->entityPath)->findBy($param, $order);
         
     }
     

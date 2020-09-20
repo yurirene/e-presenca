@@ -13,7 +13,8 @@ define("ORM_CONFIG",[
     'user' => 'root',
     'password' => '',
     'host' => 'localhost',
-    'driver' => 'pdo_mysql'
+    'driver' => 'pdo_mysql',
+    'charset'=>'utf8'
 ]);
 
 $conexao = DriverManager::getConnection(ORM_CONFIG);

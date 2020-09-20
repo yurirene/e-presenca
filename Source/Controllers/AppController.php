@@ -9,7 +9,9 @@
 namespace Source\Controllers;
 
 use Firebase\JWT\JWT;
+use Source\Persistence\ChamadaDAO;
 use Source\Persistence\UsuariosDAO;
+use stdClass;
 use function flash;
 
 
@@ -26,6 +28,14 @@ class AppController extends Controller
     public function __construct($router) 
     {
         parent::__construct($router);
+    }
+    
+    public function getInfo($token): stdClass
+    {
+        $decoded = JWT::decode($token, $this->key, array('HS256'));
+        
+        return $decoded;
+        
     }
     
     private function acesso():void 
@@ -115,10 +125,34 @@ class AppController extends Controller
     
     public function lista(): void
     {
-        
+        $this->acesso();
         echo $this->view->render("lista");
         return;   
     }
+    
+    
+    public function sessoes():void
+    {
+        $this->acesso();
+        
+        echo $this->view->render("sessoes");
+        return;
+        
+    }
+    
+    public function delegados():void
+    {
+        $this->acesso();
+        echo $this->view->render("delegados");
+        return;
+    }
+    public function igrejas():void
+    {
+        $this->acesso();
+        echo $this->view->render("igrejas");
+        return;
+    }
+    
     
     public function erro($dados): void
     {
