@@ -1,4 +1,4 @@
-# e-Presenca
+# e-Presença
 ## Sistema simples de Gestão de Presença com QR Code para Congressos de UMP.
 ### Utilizando: ORM Doctrine, API básica, MVC com Requisições em AJAX;
 
